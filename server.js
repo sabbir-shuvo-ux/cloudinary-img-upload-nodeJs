@@ -54,6 +54,15 @@ app.post("/api/uploadImg", async (req, res) => {
   }
 });
 
+app.get("/api/getImg", async (req, res) => {
+  try {
+    const allData = await ImgDatabase.find();
+    res.status(200).json(allData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 const dtabaseConnection = async () => {
   try {
     await mongoose.connect(process.env.DB_URL);
